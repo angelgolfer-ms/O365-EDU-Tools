@@ -1,19 +1,19 @@
 # educationSubmissionResource resource type
 
-Wrapper around resource for used on a submission.  The wrapper adds a pointer to the assignment resource if this was copied from the assignment.  
+A wrapper around a resource for use on a submission. The wrapper adds a pointer to the assignment resource if this was copied from the assignment.  
 
 
 ## Methods
 
 | Method		   | Return Type	|Description|
 |:---------------|:--------|:----------|
-|[Get educationSubmissionResource](../api/educationsubmissionresource_get.md) | [educationSubmissionResource](educationsubmissionresource.md) |Read properties and relationships of educationSubmissionResource object.|
-|[Delete](../api/educationsubmissionresource_delete.md) | None |Delete educationSubmissionResource object. |
+|[Get educationSubmissionResource](../api/educationsubmissionresource_get.md) | [educationSubmissionResource](educationsubmissionresource.md) |Read properties and relationships of an **educationSubmissionResource** object.|
+|[Delete](../api/educationsubmissionresource_delete.md) | None |Delete an **educationSubmissionResource** object. |
 
 ## Properties
 | Property	   | Type	|Description|
 |:---------------|:--------|:----------|
-|assignmentResource|[educationODataRef](educationodataref.md)|Pointer to the assignment from which this resource was copied.  If this is null, the student uploaded the resource.|
+|assignmentResourceUrl|String|Pointer to the assignment from which this resource was copied. If this is null, the student uploaded the resource.|
 |id|String| Read-only.|
 |resource|[educationResource](educationresource.md)|Resource object.|
 
@@ -23,7 +23,7 @@ None
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following is a JSON representation of the resource.
 
 <!-- {
   "blockType": "resource",
@@ -35,7 +35,7 @@ Here is a JSON representation of the resource.
 
 ```json
 {
-  "assignmentResource": {"@odata.type": "microsoft.graph.educationODataRef"},
+  "assignmentResourceUrl": "String",
   "id": "String (identifier)",
   "resource": {"@odata.type": "microsoft.graph.educationResource"}
 }

@@ -1,23 +1,23 @@
 # educationAssignment resource type
 
-Assignment is the core object of the Assignments API.  Assignments are owned by a class and thus
-most of the APIs are done within the class namespace.  Only a teacher in a class can create an assignment.
-Assignment starts in the "Draft" state when created.  In draft, students will not see the assignment and submissions will not be created.
-The status on an assignment cannot be changed via PATCH, the status is changed by using the action.  
+The **educationAssignment** resource represents a task or unit of work assigned to a student or team member in a class as part of their study. Only teachers or team owners can create assignments. Assignments contain handouts and tasks that the teacher wants the student to work on. Each student assignment has an associated [submission](educationsubmissionresource.md) that contains any work their teacher asked to be turned in. A teacher can add scores and feedback to the submission turned in by the student.
 
+When an assignment is created, it is in a Draft state. Students can't see the assignment and submissions won't be created. You can change the status of an assignment by using the [publish](../api/educationassignment_publish.md) action. You can't use a PATCH request to change the assignment status.
 
+The assignment APIs are exposed in the class namespace.
 
 ## Methods
 
 | Method		   | Return Type	|Description|
 |:---------------|:--------|:----------|
-|[Get educationAssignment](../api/educationassignment_get.md) | [educationAssignment](educationassignment.md) |Read properties and relationships of educationAssignment object.|
-|[Create educationAssignmentResource](../api/educationassignment_post_resources.md) |[educationAssignmentResource](educationassignmentresource.md)| Create a new educationAssignmentResource by posting to the resources collection.|
-|[List resources](../api/educationassignment_list_resources.md) |[educationAssignmentResource](educationassignmentresource.md) collection| Get a educationAssignmentResource object collection.|
-|[List submissions](../api/educationassignment_list_submissions.md) |[educationSubmission](educationsubmission.md) collection| Get a educationSubmission object collection.|
-|[Update](../api/educationassignment_update.md) | [educationAssignment](educationassignment.md)	|Update educationAssignment object. |
-|[Delete](../api/educationassignment_delete.md) | None |Delete educationAssignment object. |
-|[Publish](../api/educationassignment_publish.md)|[educationAssignment](educationassignment.md)||
+|[Get educationAssignment](../api/educationassignment_get.md) | [educationAssignment](educationassignment.md) |Read properties and relationships of an **educationAssignment** object.|
+|[Create educationAssignmentResource](../api/educationassignment_post_resources.md) |[educationAssignmentResource](educationassignmentresource.md)| Create a new **educationAssignmentResource** by posting to the resources collection.|
+|[List resources](../api/educationassignment_list_resources.md) |[educationAssignmentResource](educationassignmentresource.md) collection| Get an **educationAssignmentResource** object collection.|
+|[List submissions](../api/educationassignment_list_submissions.md) |[educationSubmission](educationsubmission.md) collection| Get an **educationSubmission** object collection.|
+|[Update](../api/educationassignment_update.md) | [educationAssignment](educationassignment.md)	|Update an **educationAssignment** object. |
+|[Delete](../api/educationassignment_delete.md) | None |Delete an **educationAssignment** object. |
+|[Publish](../api/educationassignment_publish.md)|[educationAssignment](educationassignment.md)|Change the state of an **educationAssignment** object from draft to published.|
+|[GetResourceFolderUrl](../api/educationassignment_getResourcesFolderUrl.md)| string| The OneDrive folder into which file-based resources should be placed to be part of an assignment resource. Files must be located in this folder to be added as a resource.|
 
 ## Properties
 | Property	   | Type	|Description|
@@ -25,7 +25,7 @@ The status on an assignment cannot be changed via PATCH, the status is changed b
 |id|String| Read-only.|
 |allowLateSubmissions|Boolean| Identifies whether students can submit after the due date. |
 |allowStudentsToAddResourcesToSubmission|Boolean| Identifies whether students can add their own resources to a submission or if they can only modify resources added by the teacher. |
-|assignDateTime|DateTimeOffset|The date when the assignment should become active.  If in the future, the assignment is not shown to the student until this date.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
+|assignDateTime|DateTimeOffset|The date when the assignment should become active.  If in the future, the assignment is not shown to the student until this date.  The **Timestamp** type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
 |assignTo|[educationAssignmentRecipient](educationassignmentrecipient.md)| Which users, or whole class should receive a submission object once the assignment is published. |
 |assignedDateTime|DateTimeOffset|The moment that the assignment was published to students and the assignment shows up on the students timeline.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
 |classId|String| Class which this assignment belongs. |
@@ -37,8 +37,7 @@ The status on an assignment cannot be changed via PATCH, the status is changed b
 |instructions|[itemBody](itembody.md)| Instructions for the assignment.  This along with the display name tell the student what to do. |
 |lastModifiedBy|[identitySet](identityset.md)| Who last modified the assignment. |
 |lastModifiedDateTime|DateTimeOffset|Moment when the assignment was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
-|resourcesFolder|[educationODataRef](educationodataref.md)| Folder into which file based resource should be put to be part of a assignmnet resource.  Files must live in this folder to be added as a resource.|
-|status|string| Status of the Asssignment.  You can not PATCH this value.  Possible values are: `draft`, `published`, `assigned`.|
+|status|string| Status of the **Assignment**.  You can not PATCH this value.  Possible values are: `draft`, `published`, `assigned`.|
 
 ## Relationships
 | Relationship | Type	|Description|
@@ -48,7 +47,7 @@ The status on an assignment cannot be changed via PATCH, the status is changed b
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following is a JSON representation of the resource.
 
 <!-- {
   "blockType": "resource",
@@ -75,7 +74,6 @@ Here is a JSON representation of the resource.
   "instructions": {"@odata.type": "microsoft.graph.itemBody"},
   "lastModifiedBy": {"@odata.type": "microsoft.graph.identitySet"},
   "lastModifiedDateTime": "String (timestamp)",
-  "resourcesFolder": {"@odata.type": "microsoft.graph.educationODataRef"},
   "status": "string"
 }
 ```

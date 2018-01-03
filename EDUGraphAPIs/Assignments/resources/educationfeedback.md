@@ -1,18 +1,18 @@
 # educationFeedback resource type
 
+Feedback from a teacher to a student. This property represents both the text part of the feedback along with the who.
 
-Feedback from a teacher to a student.  This property represents both the text part of the feedback along with the who.
 
 ## Properties
 | Property	   | Type	|Description|
 |:---------------|:--------|:----------|
 |feedbackBy|[identitySet](identityset.md)|User who created the feedback.|
-|feedbackDateTime|DateTimeOffset|Momnet in time when the feedback was given.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
+|feedbackDateTime|DateTimeOffset|Moment in time when the feedback was given. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: `'2014-01-01T00:00:00Z'`|
 |text|[itemBody](itembody.md)|Feedback.|
 
 ## JSON representation
 
-Here is a JSON representation of the resource.
+The following is a JSON representation of the resource.
 
 <!-- {
   "blockType": "resource",
